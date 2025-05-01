@@ -1,0 +1,200 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime News</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1><i class="fa-solid fa-newspaper"></i>Prime News</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="news.html">News</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" placeholder="Search..." id="search-input">
+                <button onclick="searchNews()" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="login-container">
+                <button id="login-button" onclick="location.href='login.html'"><i class="fa-solid fa-user"></i>
+                    Login</button>
+            </div>
+            <div class="register-container">
+                <button id="register-button"><i class="fa-solid fa-user-plus"></i> Register</button>
+            </div>
+            <div class="logout-container">
+                <button id="logout-button"><i class="fa-solid fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Latest News</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>Stay updated with the latest news from around the world.</p>
+                            <ul id="news-list">
+                                <!-- News items will be dynamically inserted here -->
+                                <li>
+                                    <h3>Breaking News: Major Event Happens</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+
+                                <li>
+                                    <h3>Technology: New Gadget Released</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+
+                                <li>
+                                    <h3>Health: Tips for a Healthy Lifestyle</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Sports: Local Team Wins Championship</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Entertainment: Upcoming Movie Releases</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Finance: Market Trends and Analysis</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Travel: Top Destinations to Visit</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Science: Latest Discoveries and Innovations</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+
+                                <li>
+                                    <h3>Politics: Current Affairs and Updates</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+
+                                <li>
+                                    <h3>Environment: Climate Change and Its Impact</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+
+                                <li>
+                                    <h3>Education: Tips for Students</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Food: Delicious Recipes to Try</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Fashion: Latest Trends and Styles</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Automotive: New Car Models Released</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Real Estate: Housing Market Trends</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Gaming: Upcoming Game Releases</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Cryptocurrency: Market Analysis</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Weather: Forecast for the Week</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>History: Significant Events in History</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                                <li>
+                                    <h3>Culture: Exploring Different Cultures</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
+                                        ligula facilisis bibendum.</p>
+                                    <a href="#">Read more</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Prime News. All rights reserved.</p>
+        <div class="social-media">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
