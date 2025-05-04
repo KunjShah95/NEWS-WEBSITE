@@ -1,19 +1,31 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prime News</title>
+    <meta http-equiv="refresh" content="0; URL=landing.html">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        // Redirect to landing page
+        window.location.href = "landing.html";
+    </script>
 </head>
 
 <body>
+    <!-- This content will only be visible if the redirect fails -->
+    <div style="text-align: center; padding: 50px;">
+        <h1>Redirecting to Prime News...</h1>
+        <p>If you are not redirected automatically, please <a href="landing.html">click here</a>.</p>
+    </div>
+
+    <!-- Original content (will only be visible if JavaScript and meta redirect both fail) -->
     <header>
         <h1><i class="fa-solid fa-newspaper"></i>Prime News</h1>
         <nav>
@@ -32,7 +44,8 @@
                     Login</button>
             </div>
             <div class="register-container">
-                <button id="register-button"><i class="fa-solid fa-user-plus"></i> Register</button>
+                <button id="register-button" onclick="location.href='register.html'"><i
+                        class="fa-solid fa-user-plus"></i> Register</button>
             </div>
             <div class="logout-container">
                 <button id="logout-button"><i class="fa-solid fa-sign-out-alt"></i> Logout</button>
@@ -41,160 +54,52 @@
     </header>
 
     <main>
+        <!-- Featured News Section -->
+        <section class="featured-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="main-featured-news">
+                            <img src="https://source.unsplash.com/random/1200x600/?breaking,news" alt="Breaking News"
+                                class="featured-image">
+                            <div class="featured-content">
+                                <span class="featured-badge">Breaking News</span>
+                                <h2>Global Summit on Climate Change Sets New Emission Goals</h2>
+                                <p>World leaders commit to ambitious carbon reduction targets at the May 2025 summit,
+                                    marking a pivotal shift in global climate policy.</p>
+                                <a href="#" class="read-more">Read Full Story</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="secondary-featured-news">
+                            <div class="featured-small-item">
+                                <img src="https://source.unsplash.com/random/600x400/?technology,innovation"
+                                    alt="Technology News" class="featured-small-image">
+                                <div class="featured-small-content">
+                                    <span class="category-label tech">Technology</span>
+                                    <h3>Revolutionary AI System Decodes Ancient Languages</h3>
+                                    <a href="#" class="read-more-sm">Read More</a>
+                                </div>
+                            </div>
+                            <div class="featured-small-item">
+                                <img src="https://source.unsplash.com/random/600x400/?health,medicine" alt="Health News"
+                                    class="featured-small-image">
+                                <div class="featured-small-content">
+                                    <span class="category-label health">Health</span>
+                                    <h3>Breakthrough Treatment Shows Promise Against Antibiotic Resistance</h3>
+                                    <a href="#" class="read-more-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h2>Latest News</h2>
-                        </div>
-                        <div class="card-body">
-                            <p>Stay updated with the latest news from around the world.</p>
-                            <ul id="news-list">
-                                <!-- News items will be dynamically inserted here -->
-                                <li>
-                                    <h3>Breaking News: Major Event Happens</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-
-                                <li>
-                                    <h3>Technology: New Gadget Released</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-
-                                <li>
-                                    <h3>Health: Tips for a Healthy Lifestyle</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Sports: Local Team Wins Championship</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Entertainment: Upcoming Movie Releases</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Finance: Market Trends and Analysis</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Travel: Top Destinations to Visit</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Science: Latest Discoveries and Innovations</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-
-                                <li>
-                                    <h3>Politics: Current Affairs and Updates</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-
-                                <li>
-                                    <h3>Environment: Climate Change and Its Impact</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-
-                                <li>
-                                    <h3>Education: Tips for Students</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Food: Delicious Recipes to Try</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Fashion: Latest Trends and Styles</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Automotive: New Car Models Released</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Real Estate: Housing Market Trends</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Gaming: Upcoming Game Releases</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Cryptocurrency: Market Analysis</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Weather: Forecast for the Week</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>History: Significant Events in History</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                                <li>
-                                    <h3>Culture: Exploring Different Cultures</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec
-                                        ligula facilisis bibendum.</p>
-                                    <a href="#">Read more</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2023 Prime News. All rights reserved.</p>
-        <div class="social-media">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-    </footer>
-
-</body>
-
-</html>
+                            <h

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Prime News</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1><i class="fa-solid fa-newspaper"></i>Prime News</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="news.html">News</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" placeholder="Search..." id="search-input">
+                <button onclick="searchNews()" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="login-container">
+                <button id="login-button" onclick="location.href='login.html'"><i class="fa-solid fa-user"></i>
+                    Login</button>
+            </div>
+            <div class="register-container">
+                <button id="register-button" onclick="location.href='register.html'"><i
+                        class="fa-solid fa-user-plus"></i> Register</button>
+            </div>
+            <div class="logout-container" style="display:none;">
+                <button id="logout-button" onclick="location.href='logout.html'"><i
+                        class="fa-solid fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="about-page">
+                <div class="about-header">
+                    <h1>About Prime News</h1>
+                    <div class="about-subtitle">Your Source for Reliable Information</div>
+                </div>
+
+                <div class="about-section">
+                    <div class="about-image">
+                        <img src="https://source.unsplash.com/random/800x600/?newsroom" alt="Our Newsroom">
+                    </div>
+                    <div class="about-content">
+                        <h2>Our Story</h2>
+                        <p>Founded in 2020, Prime News emerged with a clear mission: to provide unbiased, fact-checked
+                            news coverage across a wide spectrum of topics that matter to our readers.</p>
+                        <p>In a world of rapid information exchange and increasing misinformation, we stand committed to
+                            journalistic integrity and the belief that well-informed citizens are the foundation of a
+                            healthy democracy.</p>
+                        <p>What started as a small team of passionate journalists has grown into a global network of
+                            reporters, editors, and media professionals dedicated to bringing you the news that matters.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-section">
+                    <h2>Our Leadership Team</h2>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="https://source.unsplash.com/random/300x300/?portrait,professional"
+                                    alt="Team Member">
+                            </div>
+                            <h3>Sarah Johnson</h3>
+                            <p class="position">Editor-in-Chief</p>
+                            <p>With over 15 years of experience in journalism, Sarah leads our editorial vision with
+                                integrity and passion.</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="https://source.unsplash.com/random/300x300/?portrait,man" alt="Team Member">
+                            </div>
+                            <h3>David Chen</h3>
+                            <p class="position">Managing Editor</p>
+                            <p>David oversees our day-to-day operations and ensures the highest quality standards in our
+                                reporting.</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="https://source.unsplash.com/random/300x300/?portrait,woman" alt="Team Member">
+                            </div>
+                            <h3>Maya Rodriguez</h3>
+                            <p class="position">Technology Editor</p>
+                            <p>Maya brings cutting-edge insights to our technology coverage and digital transformation
+                                initiatives.</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="https://source.unsplash.com/random/300x300/?portrait,senior"
+                                    alt="Team Member">
+                            </div>
+                            <h3>Robert Williams</h3>
+                            <p class="position">Political Correspondent</p>
+                            <p>With decades covering world politics, Robert brings depth and context to complex
+                                political stories.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="values-section">
+                    <h2>Our Core Values</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h3>Integrity</h3>
+                            <p>We hold ourselves to the highest ethical standards in our reporting and business
+                                practices.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>Accuracy</h3>
+                            <p>We verify facts diligently and correct errors promptly and transparently.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <h3>Independence</h3>
+                            <p>Our reporting remains free from undue influence, focusing on what matters to our readers.
+                            </p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Diversity</h3>
+                            <p>We celebrate diverse perspectives and strive to represent our global community.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <div class="stat-number">5M+</div>
+                        <div class="stat-label">Monthly Readers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Countries Reached</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Journalists</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">News Coverage</div>
+                    </div>
+                </div>
+
+                <div class="awards-section">
+                    <h2>Our Achievements</h2>
+                    <div class="awards-list">
+                        <div class="award">
+                            <div class="award-year">2024</div>
+                            <div class="award-details">
+                                <h3>Excellence in Digital Journalism</h3>
+                                <p>Global Media Awards</p>
+                            </div>
+                        </div>
+                        <div class="award">
+                            <div class="award-year">2023</div>
+                            <div class="award-details">
+                                <h3>Best News Website</h3>
+                                <p>International Web Awards</p>
+                            </div>
+                        </div>
+                        <div class="award">
+                            <div class="award-year">2022</div>
+                            <div class="award-details">
+                                <h3>Investigative Reporting Prize</h3>
+                                <p>Journalism Foundation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h2>Join Our Community</h2>
+                    <p>Stay informed with breaking news alerts, special reports, and personalized news feeds.</p>
+                    <button class="cta-button">Subscribe Now</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Prime News</h3>
+                <p>Your trusted source for the latest news and in-depth reporting.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Politics</a></li>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Health</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Prime News. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
