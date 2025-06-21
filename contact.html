@@ -42,6 +42,18 @@
 
     <main>
         <div class="container">
+            <!-- Splash/Hero Section -->
+            <section class="relative h-64 md:h-96 flex items-center justify-center overflow-hidden mb-8">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1500&q=80"
+                    alt="Contact Prime News" class="absolute inset-0 w-full h-full object-cover opacity-70">
+                <img src="https://www.gstatic.com/webp/gallery/3.jpg" alt="Google News"
+                    class="absolute right-8 bottom-8 w-32 h-32 object-cover rounded-full border-4 border-white shadow-xl hidden md:block">
+                <div class="relative z-10 text-center">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">Contact Us</h1>
+                    <p class="text-lg md:text-2xl text-blue-100 mt-4">We'd Love to Hear From You</p>
+                </div>
+            </section>
+
             <div class="contact-page">
                 <div class="contact-header">
                     <h1>Contact Us</h1>
@@ -264,6 +276,14 @@
             document.querySelectorAll('.faq-answer').forEach(answer => {
                 answer.style.display = 'none';
             });
+        });
+    </script>
+    <script type="module" src="script.js"></script>
+    <script>
+        import { setupSmoothScroll, setupTiltCards } from './script.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            setupSmoothScroll();
+            setupTiltCards();
         });
     </script>
 </body>

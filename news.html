@@ -5,78 +5,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Categories - Prime News</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .tilt-card {
+            transition: transform 0.3s cubic-bezier(.03, .98, .52, .99);
+            will-change: transform;
+        }
+
+        .tilt-card:hover {
+            transform: rotateY(8deg) scale(1.04);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .trending-carousel {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        .trending-item {
+            min-width: 350px;
+            scroll-snap-align: start;
+        }
+
+        /* Ticker styles */
+        .ticker-animate {
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <header>
-        <h1><i class="fa-solid fa-newspaper"></i>Prime News</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="news.html" class="active">News</a></li>
-            </ul>
-            <div class="search-container">
-                <input type="text" placeholder="Search..." id="search-input">
-                <button onclick="searchNews()" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+<body class="bg-gradient-to-br from-slate-900 to-blue-900 min-h-screen text-white">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/10 backdrop-blur shadow-lg">
+        <div class="container mx-auto flex items-center justify-between py-4 px-6">
+            <a href="index.html" class="flex items-center gap-2 text-2xl font-bold text-blue-400">
+                <i class="fa-solid fa-newspaper"></i> Prime News
+            </a>
+            <nav class="hidden md:flex gap-8 text-lg">
+                <a href="index.html" class="hover:text-blue-300 transition">Home</a>
+                <a href="about.html" class="hover:text-blue-300 transition">About</a>
+                <a href="contact.html" class="hover:text-blue-300 transition">Contact</a>
+                <a href="news.html" class="text-blue-300 font-bold">News</a>
+            </nav>
+            <div class="flex gap-2">
+                <a href="login.html"
+                    class="px-4 py-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow transition">Login</a>
+                <a href="register.html"
+                    class="px-4 py-2 rounded-full bg-white/20 hover:bg-blue-400 text-blue-100 font-semibold shadow transition">Sign
+                    Up</a>
             </div>
-            <div class="login-container">
-                <button id="login-button" onclick="location.href='login.html'"><i class="fa-solid fa-user"></i>
-                    Login</button>
-            </div>
-            <div class="register-container">
-                <button id="register-button" onclick="location.href='register.html'"><i
-                        class="fa-solid fa-user-plus"></i> Register</button>
-            </div>
-            <div class="logout-container" style="display:none;">
-                <button id="logout-button" onclick="location.href='logout.html'"><i
-                        class="fa-solid fa-sign-out-alt"></i> Logout</button>
-            </div>
-        </nav>
+        </div>
     </header>
+
+    <!-- Live Headlines Ticker -->
+    <section
+        class="w-full bg-gradient-to-r from-blue-800 to-blue-600 py-3 flex items-center overflow-hidden sticky top-0 z-40">
+        <div class="flex items-center gap-3 px-6">
+            <i class="fas fa-bolt text-yellow-300 text-xl animate-pulse"></i>
+            <span class="font-bold text-lg">Live Headlines</span>
+        </div>
+        <div class="relative flex-1 overflow-hidden">
+            <div id="news-ticker" class="absolute whitespace-nowrap ticker-animate text-white text-lg font-medium">
+                <span class="mx-8 flex items-center"><img src='https://source.unsplash.com/random/32x32/?breaking,news'
+                        class='rounded-full mr-2' />Global Leaders Announce New Climate Agreement at UN Summit</span>
+                <span class="mx-8 flex items-center"><img src='https://source.unsplash.com/random/32x32/?ai,technology'
+                        class='rounded-full mr-2' />Tech Giant Reveals Revolutionary AI Assistant</span>
+                <span class="mx-8 flex items-center"><img
+                        src='https://source.unsplash.com/random/32x32/?health,medicine'
+                        class='rounded-full mr-2' />Scientists Discover Breakthrough Treatment for Rare Disease</span>
+                <span class="mx-8 flex items-center"><img src='https://source.unsplash.com/random/32x32/?sports,stadium'
+                        class='rounded-full mr-2' />Major Sports League Announces Expansion Teams</span>
+                <span class="mx-8 flex items-center"><img src='https://source.unsplash.com/random/32x32/?stock,market'
+                        class='rounded-full mr-2' />Stock Markets Reach Record High Amid Economic Recovery</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Splash/Hero Section with Unsplash and Google News images -->
+    <section class="relative h-64 md:h-96 flex items-center justify-center overflow-hidden mb-8">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80"
+            alt="Newsroom Splash" class="absolute inset-0 w-full h-full object-cover opacity-70">
+        <img src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Google News Splash"
+            class="absolute right-8 bottom-8 w-32 h-32 object-cover rounded-full border-4 border-white shadow-xl hidden md:block">
+        <div class="relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">Today's Top Stories</h1>
+            <p class="text-lg md:text-2xl text-blue-100 mt-4">Curated from around the world, just for you.</p>
+        </div>
+    </section>
 
     <main>
         <!-- Category Navigation -->
-        <section class="category-nav">
-            <div class="container">
-                <div class="category-tabs">
-                    <a href="#all" class="category-tab active" data-category="all">All News</a>
-                    <a href="#politics" class="category-tab" data-category="politics">Politics</a>
-                    <a href="#technology" class="category-tab" data-category="technology">Technology</a>
-                    <a href="#business" class="category-tab" data-category="business">Business</a>
-                    <a href="#health" class="category-tab" data-category="health">Health</a>
-                    <a href="#science" class="category-tab" data-category="science">Science</a>
-                    <a href="#sports" class="category-tab" data-category="sports">Sports</a>
-                    <a href="#entertainment" class="category-tab" data-category="entertainment">Entertainment</a>
+        <section class="py-8">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button
+                        class="category-tab px-6 py-2 rounded-full bg-blue-700/30 hover:bg-blue-500 text-white font-semibold transition"
+                        data-category="all">All News</button>
+                    <button
+                        class="category-tab px-6 py-2 rounded-full bg-pink-500/30 hover:bg-pink-500 text-white font-semibold transition"
+                        data-category="politics">Politics</button>
+                    <button
+                        class="category-tab px-6 py-2 rounded-full bg-blue-400/30 hover:bg-blue-400 text-white font-semibold transition"
+                        data-category="technology">Technology</button>
+                    <button
+                        class="category-tab px-6 py-2 rounded-full bg-yellow-400/30 hover:bg-yellow-400 text-white font-semibold transition"
+                        data-category="business">Business</button>
+                    <button
+                        class="category-tab px-6 py-2 rounded-full bg-green-400/30 hover:bg-green-400 text-white font-semibold transition"
+                        data-category="health">Health</button>
+                    <button
+                        class="category-tab px-6 py-2 rounded-full bg-cyan-400/30 hover:bg-cyan-400 text-white font-semibold transition"
+                        data-category="science">Science</button>
+                    <button
+                        class="category-tab px-6 py-2 rounded-full bg-orange-400/30 hover:bg-orange-400 text-white font-semibold transition"
+                        data-category="sports">Sports</button>
+                    <button
+                        class="category-tab px-6 py-2 rounded-full bg-purple-400/30 hover:bg-purple-400 text-white font-semibold transition"
+                        data-category="entertainment">Entertainment</button>
                 </div>
             </div>
         </section>
 
         <!-- Trending Now Section -->
-        <section class="trending-section">
-            <div class="container">
-                <h2 class="section-title"><i class="fas fa-chart-line"></i> Trending Now</h2>
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 flex items-center gap-3"><i class="fas fa-chart-line"></i> Trending
+                    Now
+                </h2>
                 <div class="trending-carousel">
-                    <div class="trending-item">
-                        <div class="trending-image">
-                            <img src="https://source.unsplash.com/random/800x450/?global,summit" alt="Global Summit">
-                            <span class="trending-badge"><i class="fas fa-bolt"></i> TRENDING</span>
-                        </div>
-                        <div class="trending-content">
-                            <span class="category-tag politics">Politics</span>
-                            <h3>Global Leaders Announce New Climate Agreement at UN Summit</h3>
-                            <div class="trending-meta">
-                                <span><i class="far fa-clock"></i> 2 hours ago</span>
-                                <span><i class="far fa-comment"></i> 127 comments</span>
+                    <div
+                        class="trending-item bg-gradient-to-br from-blue-700 to-blue-400 rounded-2xl shadow-xl p-6 flex flex-col md:flex-row gap-6 tilt-card">
+                        <img src="https://source.unsplash.com/random/400x250/?global,summit"
+                            class="rounded-xl w-64 h-40 object-cover" alt="Global Summit">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <span
+                                    class="inline-block px-4 py-1 rounded-full bg-pink-500 text-white text-xs font-bold mb-2">Politics</span>
+                                <h3 class="text-xl font-bold mb-2">Global Leaders Announce New Climate Agreement at UN
+                                    Summit
+                                </h3>
+                                <div class="flex gap-6 text-blue-100 text-sm mb-2">
+                                    <span><i class="far fa-clock"></i> 2 hours ago</span>
+                                    <span><i class="far fa-comment"></i> 127 comments</span>
+                                </div>
+                                <p class="mb-2">World leaders have reached a landmark agreement on reducing carbon
+                                    emissions by 40%
+                                    before 2030, marking a significant step forward in the fight against climate change.
+                                </p>
                             </div>
-                            <p>World leaders have reached a landmark agreement on reducing carbon emissions by 40%
-                                before 2030, marking a significant step forward in the fight against climate change.</p>
-                            <a href="#" class="read-more-btn">Read Full Story</a>
+                            <a href="#"
+                                class="inline-block mt-2 px-6 py-2 rounded-full bg-white/20 hover:bg-blue-500 text-white font-semibold transition">Read
+                                Full Story</a>
+                        </div>
+                    </div>
+                    <div
+                        class="trending-item bg-gradient-to-br from-green-700 to-green-400 rounded-2xl shadow-xl p-6 flex flex-col md:flex-row gap-6 tilt-card">
+                        <img src="https://source.unsplash.com/random/400x250/?ai,technology"
+                            class="rounded-xl w-64 h-40 object-cover" alt="AI Tech">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <span
+                                    class="inline-block px-4 py-1 rounded-full bg-blue-400 text-white text-xs font-bold mb-2">Technology</span>
+                                <h3 class="text-xl font-bold mb-2">Tech Giant Reveals Revolutionary AI Assistant</h3>
+                                <div class="flex gap-6 text-blue-100 text-sm mb-2">
+                                    <span><i class="far fa-clock"></i> 1 hour ago</span>
+                                    <span><i class="far fa-comment"></i> 89 comments</span>
+                                </div>
+                                <p class="mb-2">A major tech company has unveiled an AI assistant that can understand
+                                    and respond to human emotions, setting a new standard for digital interaction.</p>
+                            </div>
+                            <a href="#"
+                                class="inline-block mt-2 px-6 py-2 rounded-full bg-white/20 hover:bg-green-500 text-white font-semibold transition">Read
+                                Full Story</a>
                         </div>
                     </div>
                 </div>
@@ -84,333 +198,101 @@
         </section>
 
         <!-- News Articles Section -->
-        <section class="news-articles-section" id="all">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <!-- Main Articles Column -->
-                        <div class="articles-container">
-                            <article class="news-article" data-category="politics">
-                                <div class="article-image">
-                                    <img src="https://source.unsplash.com/random/600x400/?parliament,government"
-                                        alt="Politics News">
-                                    <span class="article-date">May 3, 2025</span>
-                                </div>
-                                <div class="article-content">
-                                    <span class="category-tag politics">Politics</span>
-                                    <h3>New Economic Reform Bill Passes Senate After Intense Debate</h3>
-                                    <p>The Senate approved a comprehensive economic reform package yesterday that
-                                        includes major changes to tax codes, infrastructure spending and small business
-                                        support programs.</p>
-                                    <div class="article-meta">
-                                        <span><i class="far fa-clock"></i> 8 hours ago</span>
-                                        <span><i class="far fa-eye"></i> 2.4K</span>
-                                        <span><i class="far fa-comment"></i> 48</span>
-                                    </div>
-                                    <a href="#" class="read-more-btn">Continue Reading</a>
-                                </div>
-                            </article>
-
-                            <article class="news-article" data-category="technology">
-                                <div class="article-image">
-                                    <img src="https://source.unsplash.com/random/600x400/?ai,robot"
-                                        alt="Technology News">
-                                    <span class="article-date">May 4, 2025</span>
-                                </div>
-                                <div class="article-content">
-                                    <span class="category-tag technology">Technology</span>
-                                    <h3>Revolutionary AI Model Surpasses Human Performance in Medical Diagnostics</h3>
-                                    <p>A new artificial intelligence system developed by researchers has demonstrated
-                                        unprecedented accuracy in diagnosing rare diseases, outperforming experienced
-                                        medical specialists in blind tests.</p>
-                                    <div class="article-meta">
-                                        <span><i class="far fa-clock"></i> 3 hours ago</span>
-                                        <span><i class="far fa-eye"></i> 5.7K</span>
-                                        <span><i class="far fa-comment"></i> 94</span>
-                                    </div>
-                                    <a href="#" class="read-more-btn">Continue Reading</a>
-                                </div>
-                            </article>
-
-                            <article class="news-article" data-category="business">
-                                <div class="article-image">
-                                    <img src="https://source.unsplash.com/random/600x400/?stock,finance"
-                                        alt="Business News">
-                                    <span class="article-date">May 4, 2025</span>
-                                </div>
-                                <div class="article-content">
-                                    <span class="category-tag business">Business</span>
-                                    <h3>Major Tech Merger Creates New Industry Giant</h3>
-                                    <p>In a move that's reshaping the technology landscape, two leading tech companies
-                                        announced their merger today, creating a new entity valued at over $2 trillion
-                                        and sending shockwaves through global markets.</p>
-                                    <div class="article-meta">
-                                        <span><i class="far fa-clock"></i> 6 hours ago</span>
-                                        <span><i class="far fa-eye"></i> 3.9K</span>
-                                        <span><i class="far fa-comment"></i> 67</span>
-                                    </div>
-                                    <a href="#" class="read-more-btn">Continue Reading</a>
-                                </div>
-                            </article>
-
-                            <article class="news-article" data-category="health">
-                                <div class="article-image">
-                                    <img src="https://source.unsplash.com/random/600x400/?vaccine,medical"
-                                        alt="Health News">
-                                    <span class="article-date">May 3, 2025</span>
-                                </div>
-                                <div class="article-content">
-                                    <span class="category-tag health">Health</span>
-                                    <h3>Breakthrough Cancer Treatment Shows Promising Results in Clinical Trials</h3>
-                                    <p>A novel targeted therapy approach has demonstrated an 80% success rate in
-                                        treating previously resistant forms of pancreatic cancer, according to results
-                                        from phase III clinical trials published yesterday.</p>
-                                    <div class="article-meta">
-                                        <span><i class="far fa-clock"></i> 1 day ago</span>
-                                        <span><i class="far fa-eye"></i> 4.2K</span>
-                                        <span><i class="far fa-comment"></i> 73</span>
-                                    </div>
-                                    <a href="#" class="read-more-btn">Continue Reading</a>
-                                </div>
-                            </article>
-
-                            <article class="news-article" data-category="science">
-                                <div class="article-image">
-                                    <img src="https://source.unsplash.com/random/600x400/?space,astronomy"
-                                        alt="Science News">
-                                    <span class="article-date">May 2, 2025</span>
-                                </div>
-                                <div class="article-content">
-                                    <span class="category-tag science">Science</span>
-                                    <h3>Astronomers Discover Earth-like Planet in Habitable Zone</h3>
-                                    <p>Using advanced spectroscopy techniques, an international team of astronomers has
-                                        identified a rocky planet with atmosphere and water vapor just 40 light years
-                                        away, making it the most promising candidate yet for extraterrestrial life.</p>
-                                    <div class="article-meta">
-                                        <span><i class="far fa-clock"></i> 2 days ago</span>
-                                        <span><i class="far fa-eye"></i> 6.8K</span>
-                                        <span><i class="far fa-comment"></i> 132</span>
-                                    </div>
-                                    <a href="#" class="read-more-btn">Continue Reading</a>
-                                </div>
-                            </article>
-
-                            <article class="news-article" data-category="sports">
-                                <div class="article-image">
-                                    <img src="https://source.unsplash.com/random/600x400/?olympics,athlete"
-                                        alt="Sports News">
-                                    <span class="article-date">May 4, 2025</span>
-                                </div>
-                                <div class="article-content">
-                                    <span class="category-tag sports">Sports</span>
-                                    <h3>Olympic Champion Breaks World Record in 400m Final</h3>
-                                    <p>In a stunning performance that left spectators in awe, the reigning Olympic
-                                        champion shattered the 15-year-old world record by nearly half a second in
-                                        yesterday's thrilling final.</p>
-                                    <div class="article-meta">
-                                        <span><i class="far fa-clock"></i> 10 hours ago</span>
-                                        <span><i class="far fa-eye"></i> 7.5K</span>
-                                        <span><i class="far fa-comment"></i> 203</span>
-                                    </div>
-                                    <a href="#" class="read-more-btn">Continue Reading</a>
-                                </div>
-                            </article>
-
-                            <article class="news-article" data-category="entertainment">
-                                <div class="article-image">
-                                    <img src="https://source.unsplash.com/random/600x400/?movie,cinema"
-                                        alt="Entertainment News">
-                                    <span class="article-date">May 3, 2025</span>
-                                </div>
-                                <div class="article-content">
-                                    <span class="category-tag entertainment">Entertainment</span>
-                                    <h3>Blockbuster Sequel Breaks Opening Weekend Records</h3>
-                                    <p>The highly anticipated sequel to last year's award-winning film has smashed box
-                                        office records with a $450 million global opening weekend, becoming the biggest
-                                        debut in cinematic history.</p>
-                                    <div class="article-meta">
-                                        <span><i class="far fa-clock"></i> 1 day ago</span>
-                                        <span><i class="far fa-eye"></i> 5.3K</span>
-                                        <span><i class="far fa-comment"></i> 178</span>
-                                    </div>
-                                    <a href="#" class="read-more-btn">Continue Reading</a>
-                                </div>
-                            </article>
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="articles-list">
+                    <!-- Example Article Card -->
+                    <div class="tilt-card bg-white/10 rounded-2xl shadow-xl p-6 flex flex-col gap-4"
+                        data-category="politics">
+                        <img src="https://source.unsplash.com/random/600x400/?parliament,government"
+                            class="rounded-xl w-full h-48 object-cover" alt="Politics News">
+                        <span
+                            class="inline-block px-4 py-1 rounded-full bg-pink-500 text-white text-xs font-bold">Politics</span>
+                        <h3 class="text-lg font-bold">Parliament Approves New Economic Stimulus Package</h3>
+                        <p class="text-blue-100">The government has passed a new stimulus bill to boost the economy and
+                            support small businesses.</p>
+                        <div class="flex gap-4 text-blue-200 text-xs">
+                            <span><i class="far fa-clock"></i> 3 hours ago</span>
+                            <span><i class="far fa-comment"></i> 54 comments</span>
                         </div>
-
-                        <!-- Pagination -->
-                        <div class="pagination-container">
-                            <div class="pagination">
-                                <a href="#" class="page-link active">1</a>
-                                <a href="#" class="page-link">2</a>
-                                <a href="#" class="page-link">3</a>
-                                <a href="#" class="page-link">4</a>
-                                <a href="#" class="page-link">5</a>
-                                <a href="#" class="page-link next"><i class="fas fa-angle-right"></i></a>
-                            </div>
-                        </div>
+                        <a href="#"
+                            class="inline-block mt-2 px-6 py-2 rounded-full bg-white/20 hover:bg-pink-500 text-white font-semibold transition">Read
+                            More</a>
                     </div>
-
-                    <div class="col-lg-4">
-                        <!-- Sidebar -->
-                        <div class="news-sidebar">
-                            <!-- Popular Articles Widget -->
-                            <div class="sidebar-widget popular-posts">
-                                <h3 class="widget-title">Popular Articles</h3>
-                                <div class="popular-post-list">
-                                    <div class="popular-post">
-                                        <div class="popular-post-image">
-                                            <img src="https://source.unsplash.com/random/100x100/?economy"
-                                                alt="Economy News">
-                                        </div>
-                                        <div class="popular-post-content">
-                                            <h4>Global Economy Shows Signs of Recovery After Recent Slump</h4>
-                                            <div class="post-meta">
-                                                <span><i class="far fa-clock"></i> May 2, 2025</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="popular-post">
-                                        <div class="popular-post-image">
-                                            <img src="https://source.unsplash.com/random/100x100/?celebrity"
-                                                alt="Celebrity News">
-                                        </div>
-                                        <div class="popular-post-content">
-                                            <h4>Acclaimed Actor Announces Surprise Retirement from Film Industry</h4>
-                                            <div class="post-meta">
-                                                <span><i class="far fa-clock"></i> May 1, 2025</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="popular-post">
-                                        <div class="popular-post-image">
-                                            <img src="https://source.unsplash.com/random/100x100/?environment"
-                                                alt="Environment News">
-                                        </div>
-                                        <div class="popular-post-content">
-                                            <h4>Innovative Ocean Cleanup System Removes 80% of Plastic in Test Area</h4>
-                                            <div class="post-meta">
-                                                <span><i class="far fa-clock"></i> April 30, 2025</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="popular-post">
-                                        <div class="popular-post-image">
-                                            <img src="https://source.unsplash.com/random/100x100/?football"
-                                                alt="Sports News">
-                                        </div>
-                                        <div class="popular-post-content">
-                                            <h4>Underdog Team Makes History by Reaching Championship Finals</h4>
-                                            <div class="post-meta">
-                                                <span><i class="far fa-clock"></i> May 3, 2025</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Newsletter Widget -->
-                            <div class="sidebar-widget newsletter">
-                                <h3 class="widget-title">Newsletter</h3>
-                                <p>Subscribe to our newsletter for daily updates and breaking news alerts.</p>
-                                <form class="newsletter-form">
-                                    <input type="email" placeholder="Your email address" required>
-                                    <button type="submit">Subscribe</button>
-                                </form>
-                            </div>
-
-                            <!-- Tags Widget -->
-                            <div class="sidebar-widget tags">
-                                <h3 class="widget-title">Popular Tags</h3>
-                                <div class="tags-cloud">
-                                    <a href="#" class="tag">Politics</a>
-                                    <a href="#" class="tag">Technology</a>
-                                    <a href="#" class="tag">Health</a>
-                                    <a href="#" class="tag">Business</a>
-                                    <a href="#" class="tag">Science</a>
-                                    <a href="#" class="tag">Sports</a>
-                                    <a href="#" class="tag">Election</a>
-                                    <a href="#" class="tag">Economy</a>
-                                    <a href="#" class="tag">Climate</a>
-                                    <a href="#" class="tag">Innovation</a>
-                                    <a href="#" class="tag">Entertainment</a>
-                                </div>
-                            </div>
-
-                            <!-- Ad Widget -->
-                            <div class="sidebar-widget advertisement">
-                                <div class="ad-container">
-                                    <img src="https://source.unsplash.com/random/300x250/?advertisement"
-                                        alt="Advertisement">
-                                    <span class="ad-label">Advertisement</span>
-                                </div>
-                            </div>
+                    <div class="tilt-card bg-white/10 rounded-2xl shadow-xl p-6 flex flex-col gap-4"
+                        data-category="technology">
+                        <img src="https://source.unsplash.com/random/600x400/?ai,robotics"
+                            class="rounded-xl w-full h-48 object-cover" alt="Tech News">
+                        <span
+                            class="inline-block px-4 py-1 rounded-full bg-blue-400 text-white text-xs font-bold">Technology</span>
+                        <h3 class="text-lg font-bold">Breakthrough in AI Technology Announced</h3>
+                        <p class="text-blue-100">Researchers have developed a new AI model that can learn and adapt
+                            faster than ever before.</p>
+                        <div class="flex gap-4 text-blue-200 text-xs">
+                            <span><i class="far fa-clock"></i> 5 hours ago</span>
+                            <span><i class="far fa-comment"></i> 32 comments</span>
                         </div>
+                        <a href="#"
+                            class="inline-block mt-2 px-6 py-2 rounded-full bg-white/20 hover:bg-blue-400 text-white font-semibold transition">Read
+                            More</a>
                     </div>
+                    <div class="tilt-card bg-white/10 rounded-2xl shadow-xl p-6 flex flex-col gap-4"
+                        data-category="health">
+                        <img src="https://source.unsplash.com/random/600x400/?health,medicine"
+                            class="rounded-xl w-full h-48 object-cover" alt="Health News">
+                        <span
+                            class="inline-block px-4 py-1 rounded-full bg-green-400 text-white text-xs font-bold">Health</span>
+                        <h3 class="text-lg font-bold">Breakthrough Treatment Shows Promise Against Antibiotic Resistance
+                        </h3>
+                        <p class="text-blue-100">A new treatment has shown remarkable results in combating
+                            antibiotic-resistant bacteria.</p>
+                        <div class="flex gap-4 text-blue-200 text-xs">
+                            <span><i class="far fa-clock"></i> 7 hours ago</span>
+                            <span><i class="far fa-comment"></i> 21 comments</span>
+                        </div>
+                        <a href="#"
+                            class="inline-block mt-2 px-6 py-2 rounded-full bg-white/20 hover:bg-green-400 text-white font-semibold transition">Read
+                            More</a>
+                    </div>
+                    <!-- Add more article cards for other categories as needed -->
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Prime News</h3>
-                <p>Your trusted source for the latest news and in-depth reporting.</p>
+    <!-- Footer -->
+    <footer class="bg-slate-900/90 py-10 mt-12">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8 px-4">
+            <div class="text-lg font-bold text-blue-400 flex items-center gap-2"><i class="fa-solid fa-newspaper"></i>
+                Prime News
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                </ul>
+            <div class="flex gap-6 text-blue-200">
+                <a href="index.html" class="hover:text-blue-400 transition">Home</a>
+                <a href="about.html" class="hover:text-blue-400 transition">About</a>
+                <a href="contact.html" class="hover:text-blue-400 transition">Contact</a>
+                <a href="news.html" class="hover:text-blue-400 transition">News</a>
             </div>
-            <div class="footer-section">
-                <h3>Categories</h3>
-                <ul>
-                    <li><a href="#politics">Politics</a></li>
-                    <li><a href="#business">Business</a></li>
-                    <li><a href="#technology">Technology</a></li>
-                    <li><a href="#health">Health</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Connect With Us</h3>
-                <div class="social-media">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+            <div class="flex gap-4">
+                <a href="#" class="text-blue-200 hover:text-blue-400 text-2xl transition"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-blue-200 hover:text-blue-400 text-2xl transition"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="#" class="text-blue-200 hover:text-blue-400 text-2xl transition"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="#" class="text-blue-200 hover:text-blue-400 text-2xl transition"><i
+                        class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Prime News. All rights reserved.</p>
-        </div>
+        <div class="text-center text-blue-300 mt-8">&copy; 2025 Prime News. All rights reserved.</div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- JS for category filter and tilt -->
+    <script type="module" src="script.js"></script>
     <script>
-        $(document).ready(function () {
-            // Category tabs functionality
-            $('.category-tab').on('click', function (e) {
-                e.preventDefault();
-
-                // Update active tab
-                $('.category-tab').removeClass('active');
-                $(this).addClass('active');
-
-                const category = $(this).data('category');
-
-                if (category === 'all') {
-                    $('.news-article').show();
-                } else {
-                    $('.news-article').hide();
-                    $(`.news-article[data-category="${category}"]`).show();
-                }
-            });
+        import { initNewsPage, setupTicker } from './script.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            initNewsPage();
+            setupTicker('news-ticker');
         });
     </script>
 </body>
